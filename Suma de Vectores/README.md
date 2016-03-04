@@ -2,7 +2,7 @@
 
 
 
-### Introducción
+## Introducción
 
 El proceso de la suma de vectores, es un proceso computacionalmente costoso, si se asume una implementación estandar con una complejidad `O(N)` en donde el escalamiento en cuanto a los datos posiblemente tienda a un crecimiento que pueda ser muy elevado, y que genere en últimas un tiempo de respuesta muy tardío.
 
@@ -12,7 +12,7 @@ En medio de ello se realizará una implementación de la solución secuencial y 
 
 Cabe resaltar que la implementación secuencial se ejecutará sobre CPU y el paralelo hará uso de GPU.
 
-### Especificaciones técnicas
+## Especificaciones técnicas
 
 - Intel(R) Core(TM) i7-3770K CPU @ 3.50GHz
 - NVIDIA GPU Tesla K40c
