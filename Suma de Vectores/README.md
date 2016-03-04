@@ -1,5 +1,9 @@
-# VECTOR ADDITION WITH THREAD
+# IMPLEMENTACION Y COMPARACION DE LA SUMA DE VECTORES DE FORMA SECUENCIAL Y  EN PARALELO
 
-The program uses the basic knowledge of threads and blocks, working with a GPU architecture.
 
-Also the main purpose of this implementation, is to let see a comparasion between sequential process, and the advantages of their parallel implementation.
+
+### Introducción
+
+<div class="align-justify">
+El proceso de la suma de vectores, es un proceso computacionalmente costoso, si se asume una implementación estandar con una complejidad `O(N)` en donde el escalamiento en cuanto a los datos posiblemente 
+</div>
