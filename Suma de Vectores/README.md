@@ -20,6 +20,10 @@ Cabe resaltar que la implementación secuencial se ejecutará sobre CPU y el par
 
 **Implementacion secuencial:** Para la implementacion secuencial se utiliza `malloc` y `free`.
 
+
+**Implementacion CUDA:** El mismo alojamiento para la implementacion secuencial + `cudaMalloc` y `cudaMemcpy` para manejar la memoria del dispositivo.
+
+
 ##Pruebas
 
 Para la realización del testing se usará un dataset con tamaño de 10.000, 100.000, 500.000 y 1'000.000.
@@ -27,7 +31,4 @@ Para la realización del testing se usará un dataset con tamaño de 10.000, 100
 En la implementación paralela se tiene una constante de 32 `threads`por `block`, aunque la cantidad de blocks es dinámica y está dada por la ecuación: 
 
 
-
-<p align="center">$$blocks=DimDataSet/Threads$$</p>
-
-**Implementacion CUDA:** El mismo alojamiento para la implementacion secuencial + `cudaMalloc` y `cudaMemcpy` para manejar la memoria del dispositivo.
+<p align="center"> $$blocks=DimDataSet/Threads$$  </p>
