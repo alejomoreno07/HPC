@@ -10,6 +10,8 @@ Por tanto, se encuentra  la necesidad de una implementación que pueda reducir l
 
 En medio de ello se realizará una implementación de la solución secuencial y otra paralela de dicho problema, para luego ejecutarlos con distintos tamaños de datos, en donde se tomarán sus tiempos de ejecución para su posterior comparación.
 
+Cabe resaltar que la implementación secuencial se ejecutará sobre CPU y el paralelo hará uso de GPU.
+
 ### Especificaciones técnicas
 
 - Intel(R) Core(TM) i7-3770K CPU @ 3.50GHz
