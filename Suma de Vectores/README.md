@@ -31,4 +31,4 @@ Para la realización del testing se usará un dataset con tamaño de 10.000, 100
 En la implementación paralela se tiene una constante de 32 `threads`por `block`, aunque la cantidad de blocks es dinámica y está dada por la ecuación: 
 
 
-<p align="center"> $$blocks=DimDataSet/Threads$$  </p>
+-> $$blocks=DimDataSet/Threads$$  <-
