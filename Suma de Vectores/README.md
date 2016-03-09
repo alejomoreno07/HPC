@@ -57,3 +57,17 @@ En la siguiente tabla se muestran los promedios para cada una de las 4 pruebas e
 | 100000     | 0,08588150 |
 | 500000     | 0,08856770 |
 | 1000000    | 0,08817220 |
+
+###Tabla X:
+
+(Donde X represneta TiempoCuda/TiempoSecuencial)
+
+| Tamaño (n) | Media (s)  |
+| -----------| ---------- |
+| 10000      | 5057,182353 |
+| 100000     | 7,503648 |
+| 500000     | 0,858911 |
+| 1000000    | 0,104351 |
+
+
+
