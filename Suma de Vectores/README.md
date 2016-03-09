@@ -33,3 +33,17 @@ En la implementación paralela se tiene una constante de 32 `threads`por `block`
 blocks=DimDataSet/Threads
 
 
+
+##Resultados
+
+En la siguiente tabla se muestran los promedios para cada una de las 4 pruebas en las 2 implementaciones:
+
+### Secuencial
+
+
+| Tamaño (n) | Media (s)  |
+| -----------| ---------- |
+| 10000      | 0,00001700 |
+| 100000     | 0,01144530 |
+| 500000     | 0,10311630 |
+| 1000000    | 0,84495925 |
