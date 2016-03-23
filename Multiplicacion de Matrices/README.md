@@ -129,3 +129,7 @@ En la siguiente tabla se muestran los promedios para cada una de las 10 pruebas 
 ## Conclusiones
 
 - Con base a los resultados obtenidos, se puede concluir que, aunque ambos algoritmos paralelos le dan un mayor rendimiento y por ende acelaración al programa, con respecto a su implementación secuencial, en definitiva se observa un comportamiento mucho mejor en la implementación con shared memory.
+
+- El metodo de tiling para el uso de shared memory, resultó ser realmente mucho más apropiado que la paralelización ingenua, sin embargo, ocurrió que los tamaños de las matrices debían ser múltiplos del tamaño del tile.
+
+- Es realmente grandioso, comprender como el cambio de enfoque puede desencadenar, incluso desde el mismo proceso de paralelización, resultados muy diferentes, como fue el caso de shared memory y la paralelización ingenua.
