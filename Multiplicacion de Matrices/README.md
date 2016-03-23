@@ -69,6 +69,10 @@ En la siguiente tabla se muestran los promedios para cada una de las 10 pruebas 
 | 640         | 0,0483482000 |
 | 704         | 0,0084585333 |
 
+#### GRAFICA OBTENIDA
+![alt tag](SECUENCIAL.jpg)
+
+
 ### Paralelismo Ingenuo
 | BLOCK SIZE | TILE WIDTH | DIMENSION | PRUEBA 1     | PRUEBA 2     | PRUEBA 3     | PRUEBA 4     | PRUEBA 5     | PRUEBA 6     | PRUEBA 7     | PRUEBA 8     | PRUEBA 9     | PRUEBA 10    | PRUEBA 11    | PRUEBA 12    | PRUEBA 13    | PRUEBA 14    | PRUEBA 15    |
 |------------|------------|-----------|--------------|--------------|--------------|--------------|--------------|--------------|--------------|--------------|--------------|--------------|--------------|--------------|--------------|--------------|--------------|
@@ -95,6 +99,10 @@ En la siguiente tabla se muestran los promedios para cada una de las 10 pruebas 
 | 480         | 0,0088260000 |
 | 640         | 0,0293164000 |
 | 704         | 0,0253407333 |
+
+
+#### GRAFICA OBTENIDA
+![alt tag](PARALELO.jpg)
 
 ### Shared Memory
 | BLOCK SIZE | TILE WIDTH | DIMENSION | PRUEBA 1     | PRUEBA 2     | PRUEBA 3     | PRUEBA 4     | PRUEBA 5     | PRUEBA 6     | PRUEBA 7     | PRUEBA 8     | PRUEBA 9     | PRUEBA 10    | PRUEBA 11    | PRUEBA 12    | PRUEBA 13    | PRUEBA 14    | PRUEBA 15    |
@@ -124,6 +132,8 @@ En la siguiente tabla se muestran los promedios para cada una de las 10 pruebas 
 | 640         | 1,3495050000 |
 | 704         | 6,0044090000 |
 
+#### GRAFICA OBTENIDA
+![alt tag](SHARED.jpg)
 
 ## Aceleracion Obtenida
 
