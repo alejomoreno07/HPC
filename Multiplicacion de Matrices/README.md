@@ -127,7 +127,7 @@ En la siguiente tabla se muestran los promedios para cada una de las 10 pruebas 
 
 ## Aceleracion Obtenida
 
-# Entre la implementación secuencial y Shared Memory
+### Entre la implementación secuencial y Shared Memory
 | DIMENSIONES | ACELERACION(X) |
 |-------------|----------------|
 | 32          | 1,0137931034   |
@@ -141,7 +141,7 @@ En la siguiente tabla se muestran los promedios para cada una de las 10 pruebas 
 | 640         | 27,9122076934  |
 | 704         | 709,8640820316 |
 
-# Entre la implementación secuencial y la paralelización ingenua
+### Entre la implementación secuencial y la paralelización ingenua
 
 | DIMENSIONES | ACELERACION(X) |
 |-------------|----------------|
