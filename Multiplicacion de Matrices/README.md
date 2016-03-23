@@ -69,7 +69,7 @@ En la siguiente tabla se muestran los promedios para cada una de las 10 pruebas 
 | 640         | 0,0483482000 |
 | 704         | 0,0084585333 |
 
-#### GRAFICA OBTENIDA
+#### GRAFICA OBTENIDA (DATOS VS TIEMPO DE EJECUCION)
 ![alt tag](SECUENCIAL.jpg)
 
 
@@ -101,7 +101,7 @@ En la siguiente tabla se muestran los promedios para cada una de las 10 pruebas 
 | 704         | 0,0253407333 |
 
 
-#### GRAFICA OBTENIDA
+#### GRAFICA OBTENIDA (DATOS VS TIEMPO DE EJECUCION)
 ![alt tag](PARALELO.jpg)
 
 ### Shared Memory
@@ -132,7 +132,7 @@ En la siguiente tabla se muestran los promedios para cada una de las 10 pruebas 
 | 640         | 1,3495050000 |
 | 704         | 6,0044090000 |
 
-#### GRAFICA OBTENIDA
+#### GRAFICA OBTENIDA (DATOS VS TIEMPO DE EJECUCION)
 ![alt tag](SHARED.jpg)
 
 ## Aceleracion Obtenida
