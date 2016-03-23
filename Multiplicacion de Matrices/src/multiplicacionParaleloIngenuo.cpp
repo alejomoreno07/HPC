@@ -7,52 +7,19 @@
 //////////////////////////////////////
 //      GLOBAL VARIABLES           //
 /////////////////////////////////////
-#define ndim1 3
-#define ndim2 3
-#define ndim3 3
-#define blockSize 3
-#define TILE_WIDTH 3
+#define ndim1 704
+#define ndim2 704
+#define ndim3 704
+#define blockSize 32
 /////////////////////////////////////
 
 
+///////////////////////////////////////////////////////////////////////////////////||
 
 
-__global__ void matrixSharedMemory(double *matA,double *matB,double *matResult,int width){
-
-    __shared__ double Ads[TILE_WIDTH][TILE_WIDTH];
-    __shared__ double Bds[TILE_WIDTH][TILE_WIDTH];
-
-    int bx = blockIdx.x;
-    int by = blockIdx.y;
-    int tx = threadIdx.x;
-    int ty = threadIdx.y;
-
-    int row = by * TILE_WIDTH + ty;
-    int col = bx * TILE_WIDTH + tx;
-
-    double Pvalue = 0;
-    int tile_size = width / TILE_WIDTH;
-    for(int m = 0; m < tile_size ; ++m ){
-        if( m * TILE_WIDTH < width && row < width) 
-          Ads[ty][tx] = matA[row*width + m*TILE_WIDTH + tx];
-        else 
-          Ads[ty][tx]=0.0;
-      
-        if( m * TILE_WIDTH < width && col < width)
-          Bds[ty][tx] = matB[(m*TILE_WIDTH + ty) * width + col ];
-        else 
-          Bds[ty][tx] = 0.0;
-      
-        __syncthreads();
-
-        for(int k = 0; k < TILE_WIDTH ; ++k){
-            Pvalue += Ads[ty][k] * Bds[k][tx];
-        }
-      
-        __syncthreads();
-    }
-    matResult[ row*width+col ] = Pvalue;
-}
+///////////////////////////////////////////////////////////////////////////////////||
+//                     MULTIPLICACIÓN CON PARALELISMO INGENUO                      ||
+///////////////////////////////////////////////////////////////////////////////////||
 
 __global__ void matrixMulKernel(double *d_M, double *d_N, double *d_P, int width){
     int row = blockIdx.y*blockDim.y+threadIdx.y;
@@ -69,6 +36,12 @@ __global__ void matrixMulKernel(double *d_M, double *d_N, double *d_P, int width
         d_P[row*width+col] = Pvalue;
     }
 }
+/////////////////////////////////////////////////////////////////////////////////////
+
+
+////////////////////////////////////////////////////////////////////////////////////||
+//                          MULTIPLICACION SECUENCIAL                               ||
+////////////////////////////////////////////////////////////////////////////////////||
 
 void multiplicacionMatrices(double *a,double *b,double *c,int d1,int d2,int d3){
     for(int i = 0; i < d3; i++){
@@ -82,6 +55,8 @@ void multiplicacionMatrices(double *a,double *b,double *c,int d1,int d2,int d3){
         }
     }
 }
+
+/////////////////////////////////////////////////////////////////////////////////////
 
 void fillMatrix(double *a,int rows,int colomns){
     for(int i = 0; i < rows ; i++){
@@ -103,9 +78,9 @@ void printer(double *a,double *b,double *c,int dim1,int dim2,int dim3){
  
 int main(){
     /////////////////////////////////////////////////////////////////////
-    int size1       =   ndim1 * ndim2 * sizeof(double);
-    int size2       =   ndim2 * ndim3 * sizeof(double);
-    int size3       =   ndim1 * ndim3 * sizeof(double);
+    long long int size1       =   ndim1 * ndim2 * sizeof(double);
+    long long int size2       =   ndim2 * ndim3 * sizeof(double);
+    long long int size3       =   ndim1 * ndim3 * sizeof(double);
     double *a       =   (double*) malloc(size1);
     double *b       =   (double*) malloc(size2);
     double *c       =   (double*) malloc(size3);
@@ -118,33 +93,49 @@ int main(){
     /////////////////////////////////////////////////////////////////////
 
     /////////////////////////////////////////////////////////////////////
+    //          time measuring VARIABLES                                //
+    /////////////////////////////////////////////////////////////////////
+    clock_t start, end, startGPU, endGPU;
+    double cpu_time_used, gpu_time_used;
+    ////////////////////////////////////////////////////////////////////
+
+    /////////////////////////////////////////////////////////////////////
     fillMatrix(a,ndim1,ndim2);
     fillMatrix(b,ndim2,ndim3);
     /////////////////////////////////////////////////////////////////////
-
+  	/*
+    start = clock();
+  	
+    multiplicacionMatrices(a,b,d,ndim1,ndim2,ndim3);
+    end = clock();
+    cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
+    printf("Tiempo algoritmo secuencial: %.10f\n", cpu_time_used);
+		*/
     /////////////////////////////////////////////////////////////////////
     cudaMalloc((void **) &aInDevice, size1); 
     cudaMalloc((void **) &bInDevice, size2);
     cudaMalloc((void **) &cInDevice, size3);  
+    startGPU = clock();
     cudaMemcpy(aInDevice, a, size1, cudaMemcpyHostToDevice);
     cudaMemcpy(bInDevice, b, size2, cudaMemcpyHostToDevice);
     ////////////////////////////////////////////////////////////////////
     dim3 dimBlock(blockSize,blockSize,1);
     dim3 dimGrid(blocks,blocks,1);
     ////////////////////////////////////////////////////////////////////
-    //matrixMulKernel<<<dimGrid,dimBlock>>> (aInDevice,bInDevice,cInDevice,ndim1);
-    matrixSharedMemory<<<dimGrid,dimBlock>>> (aInDevice,bInDevice,cInDevice,ndim1);
-    //matrixMulKernelTiled<<<dimGrid,dimBlock>>> (aInDevice,bInDevice,cInDevice,ndim1);
-    cudaDeviceSynchronize();
+    matrixMulKernel<<<dimGrid,dimBlock>>> (aInDevice,bInDevice,cInDevice,ndim1);
     ///////////////////////////////////////////////////////////////////
 
     ///////////////////////////////////////////////////////////////////
     cudaMemcpy(c, cInDevice, size3, cudaMemcpyDeviceToHost);
+    endGPU = clock();
+    gpu_time_used = ((double) (endGPU - startGPU)) / CLOCKS_PER_SEC;
+    printf("Tiempo algoritmo paralelo: %.10f\n", gpu_time_used);
+    
     //////////////////////////////////////////////////////////////////
-    multiplicacionMatrices(a,b,d,ndim1,ndim2,ndim3);
+    //multiplicacionMatrices(a,b,d,ndim1,ndim2,ndim3);
     /////////////////////////////////////////////////////////////////
-    printer(a,b,c,ndim1,ndim2,ndim3);
-    printer(a,b,d,ndim1,ndim2,ndim3);
+    //printer(a,b,c,ndim1,ndim2,ndim3);
+    //printer(a,b,d,ndim1,ndim2,ndim3);
     ////////////////////////////////////////////////////////////////
 
     ////////////////////////////////////////////////////////////////
