@@ -33,15 +33,8 @@ __global__ void matrixSharedMemory(double *matA,double *matB,double *matResult,i
     double Pvalue = 0;
     int tile_size = width / TILE_WIDTH;
     for(int m = 0; m < tile_size ; ++m ){
-        if( m * TILE_WIDTH < width && row < width) 
           Ads[ty][tx] = matA[row*width + m*TILE_WIDTH + tx];
-        else 
-          Ads[ty][tx]=0.0;
-      
-        if( m * TILE_WIDTH < width && col < width)
           Bds[ty][tx] = matB[(m*TILE_WIDTH + ty) * width + col ];
-        else 
-          Bds[ty][tx] = 0.0;
       
         __syncthreads();
 
