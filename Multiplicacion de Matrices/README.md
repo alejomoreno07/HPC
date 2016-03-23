@@ -173,3 +173,5 @@ En la siguiente tabla se muestran los promedios para cada una de las 10 pruebas 
 - El metodo de tiling para el uso de shared memory, resultó ser realmente mucho más apropiado que la paralelización ingenua, sin embargo, ocurrió que los tamaños de las matrices debían ser múltiplos del tamaño del tile.
 
 - Es realmente grandioso, comprender como el cambio de enfoque puede desencadenar, incluso desde el mismo proceso de paralelización, resultados muy diferentes, como fue el caso de shared memory y la paralelización ingenua.
+
+- La multiplicación de matrices es un problema altamente paralelizable, sobre el cual se pueden generar muchos desarrollos y mejoras desde el campo de la computación en paralelo.
