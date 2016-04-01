@@ -4,7 +4,7 @@ Dada la definición que se tiene de GPU (Graphics Processor Unit), como Unidad d
 
 Por tanto, y dado el potencial de procesos que pueden ser ejecutados en la GPU de manera independiente, se presenta la aplicación de diferentes métodos de paralelismo, que pueden ser llevados a cabo sobre un algoritmo fundamental: la multiplicación de matrices.
 
-Este procedimiento es computacionalmente costoso, debido a su complejidad O(A_ROW*A_COL*B_COL), y si es analisado, desde matrices cuadradas, entonces su complejidad es visiblemente cúbica.
+Este procedimiento es computacionalmente costoso, debido a su complejidad O(A_ROW*A_COL*B_COL), y si es analizado, desde matrices cuadradas, entonces su complejidad es visiblemente cúbica.
 
 Este, entonces es un tratamiento ineficiente del proceso debido a que para grandes cantidades de datos, es decir, posiblemente más de mil datos, un algoritmo implementado desde el contexto secuencial, sería ineficiente.
 
