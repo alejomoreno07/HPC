@@ -33,14 +33,14 @@ int main(int argc, char **argv){
 
 
     dataRawImage = (unsigned char*)malloc(size);
-
-    dataRawImage = image.data;
-
+	
+    dataRawImage = image.data;	
+    h_imageOutput = (unsigned char *)malloc(sizeGray);
     Mat gray_image;
     gray_image.create(height,width,CV_8UC1);
     gray_image.data = h_imageOutput;
 
-    start = clock();
+   
     Mat gray_image_opencv, grad_x, abs_grad_x;
     cvtColor(image, gray_image_opencv, CV_BGR2GRAY);
     Sobel(gray_image_opencv,grad_x,CV_8UC1,1,0,3,1,0,BORDER_DEFAULT);
