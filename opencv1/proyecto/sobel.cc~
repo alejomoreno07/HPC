@@ -9,6 +9,16 @@
 
 using namespace cv;
 
+__global__ void img2gray_cuda(unsigned char *imageInput, int width, int height, unsigned char *imageOutput){
+    int row = blockIdx.y*blockDim.y+threadIdx.y;
+    int col = blockIdx.x*blockDim.x+threadIdx.x;
+
+    if((row < height) && (col < width)){
+        imageOutput[row*width+col] = imageInput[(row*width+col)*3+RED]*0.299 + imageInput[(row*width+col)*3+GREEN]*0.587 \
+                                     + imageInput[(row*width+col)*3+BLUE]*0.114;
+    }
+}
+
 void img2gray(unsigned char *imageInput, int width, int height, unsigned char *imageOutput){
     for(int row=0; row < height; row++){
     	for(int col=0; col < width; col++){
@@ -60,11 +70,11 @@ int main(int argc, char **argv){
     imwrite("./Sobel_Image.jpg",gray_image);
 
     namedWindow(imageName, WINDOW_NORMAL);
-    namedWindow("Gray Image CUDA", WINDOW_NORMAL);
+    namedWindow("Gray Image Secuential", WINDOW_NORMAL);
     namedWindow("Sobel Image OpenCV", WINDOW_NORMAL);
 
     imshow(imageName,image);
-    imshow("Gray Image CUDA", gray_image);
+    imshow("Gray Image Secuential", gray_image);
     imshow("Sobel Image OpenCV",abs_grad_x);
 
     waitKey(0);
