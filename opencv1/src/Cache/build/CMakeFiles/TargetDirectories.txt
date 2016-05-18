@@ -1,0 +1,1 @@
+/home/hera_hpccourse/alejo/HPC/opencv1/src/Cache/build/CMakeFiles/sobelCache.dir
