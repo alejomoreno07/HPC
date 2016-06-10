@@ -1,0 +1,3 @@
+/home/hera_hpccourse/alejo/HPC/pagerank/build/CMakeFiles/edit_cache.dir
+/home/hera_hpccourse/alejo/HPC/pagerank/build/CMakeFiles/rebuild_cache.dir
+/home/hera_hpccourse/alejo/HPC/pagerank/build/CMakeFiles/page.dir
